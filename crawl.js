@@ -4,7 +4,12 @@ const fs = require('fs');
 const URL = 'http://daotao.vimaru.edu.vn/system/ajax/'
 
 const crawl = async (students, results) => {
-    return results = await Promise.all(students.map(masv => crawlPage(masv))).then(data => data)
+    // return results = await Promise.all(students.map(masv => crawlPage(masv))).then(data => data)
+    for (let i = 0; i < students.length; i++) {
+        console.log(students[i]);
+        await crawlPage(students[i]).then(data => data)
+    }
+    return students;
 }
 
 const crawlPage = (masv) => {
