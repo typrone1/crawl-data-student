@@ -1,0 +1,12 @@
+{
+  "name": "crawl-student",
+  "version": "1.0.0",
+  "description": "Crawl student",
+  "main": "crawl.js",
+  "author": "TyNH",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  }
+}
