@@ -1,4 +1,5 @@
 const request = require('request-promise')
+const fs = require('fs');
 
 const URL = 'http://daotao.vimaru.edu.vn/system/ajax/'
 
@@ -24,12 +25,15 @@ const html2Student = (data) => {
         let str = data[1].data
         res = String(str.match(/<pre>Mã sinh viên:   <b>(.*)<\/b><br>Lớp hành chính/g))
         res = res.replace('<pre>Mã sinh viên:   <b>', '')
-        res = res.replace('</b><br>Họ tên:         <b>', '-')
-        res = res.replace('</b><br>Ngày sinh:      <b>', '-')
+        res = res.replace('</b><br>Họ tên:         <b>', ',')
+        res = res.replace('</b><br>Ngày sinh:      <b>', ',')
         res = res.replace('</b><br>Lớp hành chính', '')
         res = res.replace('/', '')
         res = res.replace('/', '')
         console.log(res)
+        if (res != 'null') {
+            fs.appendFileSync('students.txt', res + '\n');
+        }
         result = res.split('-')
     }
     catch (err) {
